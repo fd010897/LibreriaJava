@@ -1,0 +1,570 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Recensioni</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Download utili per la libreria elettronica">
+    <meta name="keywords" content="Libreria, recensioni, java, download">
+    <meta name="author" content="Team 2: Claudia Premoselli - Vincenzo Barone - Francesco Esposito - Giuseppe Giordano - Francesco Donato - Giovanni De Marzo">
+    <meta name="referrer" content="no-referrer">
+    <link rel="icon" type="image/x-icon" href="img/libreriaIco.ico">
+    
+
+</head>
+<body>
+    <style>
+
+
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar */
+
+        .navbar {
+            background-color: #265073;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        .coloreNav {
+            background-color: #265073;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navbar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .nav-item {
+            margin-left: 20px;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .star {
+            color: #265073;
+            cursor: pointer;
+        }
+
+       .star.selected {
+           color: gold;
+       }
+        .immagineProfiloUtente {
+            border: 2px solid black;
+            margin-top:10px;
+            margin-bottom:10px;
+            width: 80px;
+            height: 75px;
+            border-radius: 50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            min-width:75px;
+        }
+       .immagineProfiloUtente img{
+           margin-top:-12px;
+           width:60px;
+           height:60px;
+           border-radius:50%;
+
+       }
+       .listaRecensioni{
+           width:100%;
+           height:100vh;
+           display:flex;
+           flex-direction:column;
+           gap:30px;
+           /*border: 1px solid red;*/
+           
+
+
+       }
+        .recensione {
+            width: 98%;
+            /* border:1px solid blue;*/
+            display: flex;
+            flex-direction: column;
+            height: 300px;
+            padding: 10px;
+            margin: 10px;
+            gap: 10px;
+            box-shadow: -2px 1px 7px 2px #265073;
+            border-radius:10px;
+            /*border:1px solid black;*/
+        }
+       .intestazioneRecensione{
+           display:flex;
+           gap:20px;
+           /*border:1px solid green;*/
+
+       }
+       .titoloEPubblicazione{
+           margin-left:10px;
+           padding:5px;
+           /*border: 1px solid yellow;*/
+           width:100%;
+           
+
+       }
+        .corpoCommentoRecensione {
+            /*border: 1px solid orange;*/
+            height: 100%;
+            overflow: auto;
+            /*margin-left: 106px;*/
+            /*border: 1px solid black;*/
+            border-radius: 10px;
+            padding: 10px;
+            /*box-shadow: -2px 1px 7px 2px #265073;*/
+            width:50%;
+            
+        }
+        .titoloCommento{
+            display:flex;
+            gap:10px;
+
+        }
+        .titoloCommento svg{
+            margin-top:3px;
+        }
+        
+        /* footer{
+            margin-top: calc(600px + 100%);
+        } */
+        
+    </style>
+
+
+
+
+
+
+
+    <!-- Navbar -->
+    <nav class="navbar coloreNav" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Libreria Java</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Libreria Elettronica</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="funzionalita.html">Funzionalità</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="recensioni.html">Recensioni</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contatti.html">Contatti</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <!--modale contente la possibilità di mandare una recensione-->
+        <div class="container mt-3">
+            <div class="col-lg-5 col-md-12 col-sm-12">
+                <div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Aggiungi una recensione</button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuova Recensione</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Nome:</label>
+                                            <input type="text" class="form-control" id="recipient-name">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="message-text" class="col-form-label">Messaggio:</label>
+                                            <textarea class="form-control" id="message-text"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="col-form-label">Valutazione:</label>
+                                            <div class="star-rating">
+
+
+
+                                                <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" data-value="1" id="stella1" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+    </svg>-->
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                </svg>
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle2 data-value="2" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                </svg>
+
+
+                                                <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" data-value="2" id="stella2" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+    </svg>-->
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle3 data-value="3" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                </svg>
+
+                                                <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" data-value="3" id="stella3" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+    </svg>-->
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle4 data-value="4" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                </svg>
+
+                                                <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" data-value="4" id="stella4" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+    </svg>-->
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle5 data-value="5" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                </svg>
+
+                                                <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" data-value="5" id="stella5" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                                                </svg>-->
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Invia Recensione</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--recensioni-->
+        <!--<div class="container mt-3">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="container mb-3">
+                <p>immagine</p>
+                <p>stelle</p>
+                <p>Recensione</p>
+            </div>
+            <div class="container mb-3">
+                <p>immagine</p>
+                <p>stelle</p>
+                <p>Recensione</p>
+            </div>
+
+            <div class="container mb-3">
+                <p>immagine</p>
+                <p>stelle</p>
+                <p>Recensione</p>
+            </div>
+            <div class="container mb-3">
+                <p>immagine</p>
+                <p>stelle</p>
+                <p>Recensione</p>
+            </div>
+        </div>
+        <div class="container mb-3">
+            <p>immagine</p>
+            <p>stelle</p>
+            <p>Recensione</p>
+        </div>
+    </div>-->
+
+
+
+        <div class="listaRecensioni">
+
+            <div class="recensione">
+                <div class="intestazioneRecensione">
+
+                    <div class="immagineProfiloUtente">
+                        <img src="img/omino1.jpg" alt="immagine" />
+                    </div>
+                    <div class="titoloEPubblicazione">
+                        <div class="titoloCommento">
+                            <p>Bellissimo programma! -</p>
+                            <p>Antonio Verdi - </p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                        </div>
+                        <div class="dataPubblicazione">
+                            <p id="dataCommento">18/05/2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="corpoCommentoRecensione">
+                    <p>Sono davvero molto contento di aver conosciuto questo programma! Bellissimo e spero che sia implementato con altre opzioni. Non vedo l'ora di aspettare un prossimo aggiornamento!!'</p>
+                </div>
+            </div>
+            <div class="recensione">
+                <div class="intestazioneRecensione">
+
+                    <div class="immagineProfiloUtente">
+                        <img src="img/omino1.jpg" alt="immagine" />
+                    </div>
+                    <div class="titoloEPubblicazione">
+                        <div class="titoloCommento">
+                            <p>Molto carino - </p>
+                            <p>Francesco Gabbani - </p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+
+                        </div>
+                        <div class="dataPubblicazione">
+                            <p>data pubblicazione</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="corpoCommentoRecensione">
+                    <p>Ho testato questa nuova libreria elettronica, e devo dire che è molto carina e utile per quello che sono le mie esigenze! </p>
+                </div>
+            </div>
+            <div class="recensione">
+                <div class="intestazioneRecensione">
+
+                    <div class="immagineProfiloUtente">
+                        <img src="img/omino1.jpg" alt="immagine" />
+                    </div>
+                    <div class="titoloEPubblicazione">
+                        <div class="titoloCommento">
+                            <p>Da migliorare</p>
+                            <p> - Ciccio Pasticcio - </p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor" class="star bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id=stelle1 data-value="1" fill="currentColor"
+                            class="star bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+
+                        </div>
+                        <div class="dataPubblicazione">
+                            <p>19/05/2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="corpoCommentoRecensione">
+                    <p> Un buon programma ma sono sicuro che possa essere migliorato!</p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </main>
+    <!-- Footer -->
+    <footer class="bg-custom text-white pt-4 mt-5" style="background-color: #265073">
+        <div class="container text-center text-md-left">
+            <div id="rowFooter" class="row text-center text-md-left">
+                <!--Sezione contatti-->
+                <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contatti</h5>
+                    <p>
+                        <i class="fas fa-home mr-3"></i> Via Roma, 123, 00100 Roma, IT
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope mr-3"></i> info@example.com
+                    </p>
+                    <p>
+                        <i class="fas fa-phone mr-3"></i> +39 123 456 789
+                    </p>
+                    <p>
+                        <i class="fas fa-print mr-3"></i> +39 123 456 780
+                    </p>
+                </div>
+
+                <!--Sezione link-->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Link Utili</h5>
+                    <p>
+                        <a href="funzionalita.html" class="text-white" style="text-decoration: none;">Funzionalità</a>
+                    </p>
+                    <p>
+                        <a href="download.html" class="text-white" style="text-decoration: none;">Download</a>
+                    </p>
+                    <p>
+                        <a href="index.html" class="text-white" style="text-decoration: none;">Home</a>
+                    </p>
+                </div>
+
+                <!-- Sezione About Us -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">About Us</h5>
+                    <p>La nostra missione è fornire la miglior esperienza di lettura elettronica attraverso la nostra libreria. Scopri di più su di noi visitando le nostre pagine social e il nostro sito web.</p>
+                </div>
+
+                <!-- Sezione Social -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Seguici</h5>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration: none;">Facebook</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration: none;">Twitter</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-white" style="text-decoration: none;">Instagram</a>
+                    </p>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p class="text-center text-md-left">© 2024 Libreria Java. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-5 col-lg-4">
+                    <div class="text-center text-md-right">
+                        <!--FACEBOOK-->
+                        <a href="#" class="btn btn-outline-light btn-floating m-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                            </svg>
+                        </a>
+                        <!--TWITTER-->
+                        <a href="#" class="btn btn-outline-light btn-floating m-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                            </svg>
+                        </a>
+                        <!--GOOGLE-->
+                        <a href="#" class="btn btn-outline-light btn-floating m-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                                <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z" />
+                            </svg>
+                        </a>
+                        <!--INSTAGRAM-->
+                        <a href="#" class="btn btn-outline-light btn-floating m-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!--javascript-->
+    <script>
+
+       let stelle = document.querySelectorAll('.star-rating .star');
+
+       for(let i=0; i<stelle.length;i++){
+
+        stelle[i].addEventListener('click',()=>{
+           
+            // se la stella non è stata selezionata
+            if(!stelle[i].classList.contains('selected')){
+
+                if(i==0){// si tratta della prima stella
+                 stelle[i].classList.add('selected');
+               }
+                  // mentre se si tratta delle altre stelle controllo se l'indice 0 < i < stelle.length
+                else if( i>0 && i<stelle.length){ 
+                  if(stelle[i-1].classList.contains('selected')){// se la stella precedente è stata selezionata
+                    stelle[i].classList.add('selected');// allora puoi selezionare quella attuale
+                  }     
+                }
+           }
+
+           //se la stella è stata selezionata
+           else if(stelle[i].classList.contains('selected')){
+               
+            if(i==(stelle.length-1)){// si tratta dell'ultima stella
+                stelle[i].classList.remove('selected');
+            }
+            else if(i<(stelle.length) && i>=0){// controllo se l'indice 0 <= i < stella.length
+                if(!stelle[i+1].classList.contains('selected')){// se la stella successiva non è selezionata
+                    stelle[i].classList.remove('selected');//allora puoi deselezionare quella attuale
+                }
+
+            }
+
+           }
+        });
+
+       }
+        
+        //Fare una funzione onclick modale per aggiungere la recensione dentro al div listaRecensioni.
+        //Aggiungere l'evento di aggiornamento che va ad aumentare il margint-top del footer.
+        
+    </script>
+
+    
+</body>
+</html>
